@@ -1,5 +1,6 @@
 package com.example.tutorialroom;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -7,8 +8,11 @@ import androidx.room.PrimaryKey;
 public class User {
     @PrimaryKey(autoGenerate = true)
     private int id;
+    @ColumnInfo(name = "first_name")
     private  String firstname;
+    @ColumnInfo(name = "last_name")
     private  String lastname;
+    @ColumnInfo(name = "email")
     private  String email;
 
 

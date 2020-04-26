@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 
 import android.util.Log;
 import android.view.View;
@@ -17,13 +19,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     FloatingActionButton fab;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
-    ArrayList<User> users;
+    //ArrayList<User> users;
 
 
 
@@ -34,12 +37,11 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Mokup Data
-        users =new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
-            User user = new User("john #" +i, "dow","jajaj@jaj");
-            users.add(user);
-        }
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class, "production")
+                .allowMainThreadQueries()
+                .build();
+
+        List<User> users = db.userDao().getAllUser();
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
