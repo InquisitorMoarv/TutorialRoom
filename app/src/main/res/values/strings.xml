@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TutorialRoom</string>
+    <string name="action_settings">Settings</string>
+    <string name="firstname">firstname</string>
+    <string name="lastname">Lastname</string>
+    <string name="email">email</string>
+</resources>
